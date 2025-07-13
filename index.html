@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 45px);
+            row-gap: 4px;
+        }
+
+        .total {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        button {
+            border-radius: 8px;
+            height: 35px;
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: bold;
+            width: 40px;
+            border: solid white;
+            background-color: rgb(235, 231, 231);
+        }
+
+        input {
+            border: solid rgb(219, 214, 214);
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-width: 3px;
+            height: 30px;
+            font-size: 16px;
+            text-align: right;
+            width: 100%;
+        }
+
+        .zero {
+            grid-column: span 2;
+            width:96%;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const input = document.querySelector("input");
+            const buttons = document.querySelectorAll("button");
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const value = button.textContent;
+                    switch (value) {
+                        case "C":
+                            input.value = "";
+                            break;
+                        case "DEL":
+                            input.value = input.value.slice(0, -1);
+                            break;
+                        case "=":
+                            try {
+                                input.value = eval(input.value);
+                            } catch (e) {
+                                input.value = "Error";
+                            }
+                            break;
+                        default:
+                            input.value += value;
+                            break;
+                    }
+                });
+            });
+        });
+    </script>    
+</head>
+<body>
+    <div class="total">
+        <input type="text">
+        <div class="buttons">
+            <button>C</button>
+            <button>/</button>
+            <button>*</button>
+            <button>DEL</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>-</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>+</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>=</button>
+            <button class="zero">0</button>
+            <button>.</button>
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>
